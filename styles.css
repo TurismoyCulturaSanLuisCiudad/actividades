@@ -16,7 +16,7 @@
 }
 
 body {
-    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-family: 'Baloo 2','Lato', sans-serif;
     background: linear-gradient(-40deg, rgba(0,57,116,1) 10%, rgba(144,191,68,1) 130%);
     min-height: 100vh;
     padding: var(--spacing);
@@ -165,6 +165,14 @@ tr:hover td:not(:first-child) {
     background: rgba(255,255,255,0.8);
     border-radius: var(--border-radius);
 }
+
+.izq {
+    display: block; /* Hace que la imagen se comporte como un bloque */
+     margin: 20px auto 30px auto; /* Centra la imagen horizontalmente */
+    width: 30%; /* Reduce el tamaño de la imagen */
+    height: auto; /* Mantiene la proporción */
+}
+
 
 @media (max-width: 768px) {
     .container {
