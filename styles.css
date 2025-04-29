@@ -1,0 +1,195 @@
+:root {
+  --primary-dark: rgba(0,57,116,1);
+  --primary-light: rgba(144,191,68,1);
+  --accent: #4d8cf5;
+  --neutral-light: #f8f9fa;
+  --neutral-dark: #2c3e50;
+  --shadow: 0 8px 30px rgba(0,0,0,0.12);
+  --border-radius: 16px;
+  --spacing: clamp(1rem, 3vw, 2rem);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(-40deg, rgba(0,57,116,1) 10%, rgba(144,191,68,1) 130%);
+    min-height: 100vh;
+    padding: var(--spacing);
+    color: var(--neutral-dark);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing);
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: calc(var(--spacing) * 2);
+    padding: var(--spacing);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.schedules {
+    display: grid;
+    gap: var(--spacing);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 600px), 1fr));
+}
+
+.schedule {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: var(--border-radius);
+    padding: var(--spacing);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.schedule:hover {
+    transform: translateY(-4px);
+}
+
+h2 {
+    color: var(--primary-dark);
+    margin-bottom: var(--spacing);
+    padding-bottom: calc(var(--spacing) * 0.5);
+    border-bottom: 3px solid var(--primary-light);
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+}
+
+.table-container {
+    overflow-x: auto;
+    max-height: 70vh; 
+    overflow-y: auto;
+    border-radius: calc(var(--border-radius) - 4px);
+    background: white;
+    padding: 0; 
+    -webkit-overflow-scrolling: touch;
+    position: relative; 
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 2px;
+    min-width: 800px;
+    background-color: white;
+}
+
+tr:nth-child(1) th,
+tr:nth-child(2) th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+tr:nth-child(1) th {
+    top: 0;
+}
+
+tr:nth-child(2) th {
+    top: calc(var(--spacing) * 2.5); 
+}
+
+tr:nth-child(2) th::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 4px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), transparent);
+    pointer-events: none;
+}
+
+th, td {
+    padding: calc(var(--spacing) * 0.75);
+    text-align: center;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    border-radius: 8px;
+    background-clip: padding-box; 
+}
+
+th {
+    background-color: var(--primary-dark);
+    color: white;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 5;
+    background-color: var(--accent);
+    color: white;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+tr:nth-child(1) th:first-child,
+tr:nth-child(2) th:first-child {
+    z-index: 15;
+}
+
+tr:nth-child(even) td:not(:first-child) {
+    background-color: var(--neutral-light);
+}
+
+tr:hover td:not(:first-child) {
+    background-color: rgba(144,191,68,0.1);
+}
+
+.error {
+    color: #e74c3c;
+    text-align: center;
+    padding: var(--spacing);
+    background: white;
+    border-radius: var(--border-radius);
+    margin: var(--spacing) 0;
+}
+
+.loading {
+    text-align: center;
+    padding: var(--spacing);
+    color: var(--neutral-dark);
+    font-style: italic;
+    background: rgba(255,255,255,0.8);
+    border-radius: var(--border-radius);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: calc(var(--spacing) * 0.5);
+    }
+    
+    .table-container {
+        margin: calc(var(--spacing) * -0.5);
+        border-radius: 0;
+        max-height: 60vh; 
+    }
+    
+    .table-container::after {
+        content: '←  Desliza para ver más  →';
+        display: block;
+        text-align: center;
+        padding: calc(var(--spacing) * 0.5);
+        color: var(--neutral-dark);
+        font-size: 0.9rem;
+        opacity: 0.7;
+    }
+}
+
+@media (min-width: 1200px) {
+    .schedule {
+        padding: calc(var(--spacing) * 1.5);
+    }
+}
